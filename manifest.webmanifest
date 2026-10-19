@@ -1,0 +1,10 @@
+{
+  "name": "Steady | Your daily plan",
+  "short_name": "Steady",
+  "description": "A gentle family meal, movement, and progress companion.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f7f6f0",
+  "theme_color": "#426451",
+  "orientation": "portrait"
+}

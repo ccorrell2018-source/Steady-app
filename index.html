@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#426451">
+<meta name="description" content="A gentle family meal, movement, and progress companion.">
+<title>Steady | Your daily plan</title>
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{--ink:#24372e;--muted:#66766d;--green:#426451;--green2:#dce9df;--cream:#f7f6f0;--card:#fffefa;--line:#e2e5dc;--peach:#f4e4d6;--lav:#e8e4f1;--shadow:0 5px 22px #24372e0b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+button,input,textarea,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #a9c6b1;outline-offset:2px}
+header{background:var(--green);color:white;padding:22px 18px 25px;border-radius:0 0 25px 25px}
+.headerrow{display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-size:13px;letter-spacing:.14em;text-transform:uppercase;opacity:.85;font-weight:700}.date{font-size:13px;opacity:.85}.greeting{font-size:29px;font-weight:750;letter-spacing:-.04em;margin:12px 0 4px}.subhead{font-size:14px;opacity:.9;max-width:33em}
+main{max-width:760px;margin:0 auto;padding:16px 14px 22px}.view{display:none}.view.active{display:block}.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:8px 2px 12px}.section-head h2{font-size:21px;margin:0;letter-spacing:-.025em}.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:750;margin:0 0 4px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}.card h3{margin:0 0 8px;font-size:17px}.muted{color:var(--muted)}.small{font-size:13px}.row{display:flex;align-items:center;gap:12px}.between{justify-content:space-between}.grow{flex:1;min-width:0}.pill{border-radius:999px;background:var(--green2);padding:5px 9px;font-size:12px;color:var(--green);font-weight:700;white-space:nowrap}.big-number{font-size:31px;font-weight:800;letter-spacing:-.04em}.progressbar{height:8px;background:#e9ece5;border-radius:99px;overflow:hidden;margin:10px 0}.progressbar span{display:block;height:100%;width:0;background:var(--green);border-radius:99px;transition:width .2s}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{background:#f4f5ef;border-radius:14px;padding:13px}.stat .label{font-size:12px;color:var(--muted)}.stat .value{font-size:22px;font-weight:800;margin-top:3px}
+.btn{border:0;border-radius:12px;padding:11px 14px;background:var(--green);color:white;font-weight:700}.btn.secondary{background:var(--green2);color:var(--green)}.btn.ghost{background:transparent;color:var(--green);border:1px solid var(--line)}.btn.smallbtn{padding:7px 10px;font-size:13px}.full{width:100%}
+.checklist{display:grid;gap:0}.checkrow{display:flex;gap:11px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line)}.checkrow:last-child{border-bottom:0}.checkrow input{width:20px;height:20px;accent-color:var(--green);margin:1px 0 0;flex-shrink:0}.checkrow label{flex:1;cursor:pointer}.checkrow strong{display:block;font-size:14px}.checkrow span{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.mealday{border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:10px;background:var(--card)}.mealday summary{list-style:none;padding:15px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-weight:750}.mealday summary::-webkit-details-marker{display:none}.mealday summary:after{content:"＋";color:var(--green);font-size:18px}.mealday[open] summary:after{content:"−"}.mealbody{padding:0 15px 15px}.mealitem{padding:10px 0;border-top:1px solid var(--line)}.mealitem b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:3px}.mealitem p{margin:0;font-size:14px}
+ul.clean{list-style:none;padding:0;margin:0}.clean li{padding:7px 0;border-bottom:1px solid var(--line);font-size:14px}.clean li:last-child{border:0}
+label.fieldlabel{display:block;font-size:13px;font-weight:700;margin:12px 0 5px}input[type=number],input[type=date],select,textarea{width:100%;padding:11px;border:1px solid #d7ddd4;background:white;border-radius:11px;color:var(--ink)}textarea{min-height:80px;resize:vertical}.inlineform{display:grid;grid-template-columns:1fr 1fr;gap:10px}.inlineform .wide{grid-column:1/-1}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fffefaee;backdrop-filter:blur(14px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:7px 4px calc(7px + env(safe-area-inset-bottom));z-index:10}.nav button{border:0;background:transparent;color:var(--muted);font-size:10px;padding:6px 1px;display:flex;flex-direction:column;align-items:center;gap:3px;font-weight:650}.nav button .ico{font-size:19px;line-height:1.2}.nav button.active{color:var(--green)}.nav button.active .ico{transform:translateY(-1px)}
+.notice{background:#f6eee4;border-radius:13px;padding:12px;font-size:13px;color:#684c35}.success{background:var(--green2);border-radius:12px;padding:10px 12px;font-size:13px;color:var(--green)}
+.daytabs{display:flex;gap:7px;overflow:auto;padding:2px 0 10px}.daytabs button{flex-shrink:0;border:1px solid var(--line);background:white;color:var(--muted);border-radius:99px;padding:8px 12px;font-size:13px}.daytabs button.active{background:var(--green);color:white;border-color:var(--green)}
+.exercise{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.exercise:last-child{border:0}.num{width:31px;height:31px;border-radius:10px;background:var(--lav);display:grid;place-items:center;font-weight:800;flex-shrink:0}.exercise h4{margin:0 0 3px;font-size:15px}.exercise p{margin:0;font-size:13px;color:var(--muted)}
+.historyitem{padding:10px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px}.historyitem:last-child{border:0}
+footer{text-align:center;color:var(--muted);font-size:11px;padding:12px}
+@media(min-width:650px){header{padding:26px max(22px,calc((100% - 720px)/2)) 30px}.greeting{font-size:34px}main{padding:24px 20px}.nav{max-width:760px;left:50%;transform:translateX(-50%);border:1px solid var(--line);border-bottom:0;border-radius:18px 18px 0 0}}
+</style>
+</head>
+<body>
+<header>
+  <div class="headerrow"><div class="brand">Steady</div><div class="date" id="todayDate"></div></div>
+  <div class="greeting" id="greeting">A little progress, today.</div>
+  <div class="subhead">A gentle plan for your meals, movement, and everyday life.</div>
+</header>
+<main>
+<section class="view active" id="view-today">
+  <div class="section-head"><div><p class="eyebrow">Your daily check-in</p><h2>Today, one step at a time</h2></div><span class="pill" id="todayStamp">Daily reset</span></div>
+  <div class="card">
+    <div class="row between"><div><p class="eyebrow">Today's habits</p><div class="big-number"><span id="doneCount">0</span><span class="muted" style="font-size:18px;font-weight:600"> / 5</span></div></div><span class="pill" id="habitMessage">Getting started</span></div>
+    <div class="progressbar"><span id="habitProgress"></span></div>
+    <div class="checklist" id="habitList"></div>
+  </div>
+  <div class="grid2">
+    <div class="stat"><div class="label">Calorie guide</div><div class="value">1,700–1,800</div><div class="small muted">Starting estimate/day</div></div>
+    <div class="stat"><div class="label">Movement goal</div><div class="value" id="moveGoal">5–10 min</div><div class="small muted">Comfortable pace</div></div>
+  </div>
+  <div class="card" style="margin-top:12px"><div class="row between"><h3>Today's movement</h3><span class="pill" id="workoutBadge">Gentle start</span></div><p class="muted small" id="todayWorkoutText">A short, comfortable walk or a movement break counts.</p><div class="row"><button class="btn" onclick="showView('workouts')">Open workout plan</button><button class="btn secondary" onclick="showView('progress')">Log progress</button></div></div>
+  <div class="card"><h3>Today's meal plan</h3><div id="todayMeals"></div><button class="btn secondary full" onclick="showView('meals')">View all meals & groceries</button></div>
+  <div class="notice">Your plan is a guide, not a test. If a day goes sideways, start again at the next meal or next walk.</div>
+</section>
+
+<section class="view" id="view-meals">
+  <div class="section-head"><div><p class="eyebrow">Family-friendly</p><h2>Meals & groceries</h2></div></div>
+  <div class="card"><h3>Your starting framework</h3><div class="grid2"><div class="stat"><div class="label">Breakfast</div><div class="value">350–400</div><div class="small muted">calories</div></div><div class="stat"><div class="label">Lunch</div><div class="value">400–500</div><div class="small muted">calories</div></div><div class="stat"><div class="label">Dinner</div><div class="value">500–600</div><div class="small muted">calories</div></div><div class="stat"><div class="label">Snacks & extras</div><div class="value">250–350</div><div class="small muted">calories total</div></div></div><p class="muted small">These are flexible estimates, not strict limits. Portions can change with hunger, activity, and how you feel.</p></div>
+  <div id="mealDays"></div>
+  <div class="section-head" style="margin-top:24px"><div><p class="eyebrow">Shopping list</p><h2>Weekly groceries</h2></div><button class="btn ghost smallbtn" onclick="resetGroceries()">Reset</button></div>
+  <div class="card"><div class="row between"><span class="muted small" id="groceryCount">0 checked</span><button class="btn secondary smallbtn" onclick="copyGroceries()">Copy list</button></div><div id="groceryList" class="checklist"></div></div>
+  <div class="notice">Food safety: check allergen and cross-contact labels for peanut and tree-nut allergies. Avoid green beans and lemon-heavy meals; this plan also skips Caesar dressing.</div>
+</section>
+
+<section class="view" id="view-workouts">
+  <div class="section-head"><div><p class="eyebrow">Start where you are</p><h2>Movement & strength</h2></div></div>
+  <div class="card"><h3>Four-week progression</h3><p class="muted small">Only progress when symptoms are stable. Short sessions count.</p><div class="daytabs" id="weekTabs"><button class="active" data-week="0">Week 1</button><button data-week="1">Week 2</button><button data-week="2">Week 3</button><button data-week="3">Week 4</button></div><div id="weekDetails"></div></div>
+  <div class="card"><h3>Gentle home strength session</h3><p class="muted small">Begin with one round, move slowly, and rest as needed. Because your back pain has not been assessed, treat these as options rather than a rehabilitation prescription.</p><div class="exercise"><div class="num">1</div><div><h4>Supported marching · 30–45 sec</h4><p>Hold a sturdy chair and lift one foot at a time. Keep the movement small and comfortable.</p></div></div><div class="exercise"><div class="num">2</div><div><h4>Chair sit-to-stands · 5–8 reps</h4><p>Stand and sit slowly, using your hands for support if needed.</p></div></div><div class="exercise"><div class="num">3</div><div><h4>Wall push-ups · 6–10 reps</h4><p>Keep your torso comfortable as you bend and straighten your elbows.</p></div></div><div class="exercise"><div class="num">4</div><div><h4>Supported calf raises · 8–12 reps</h4><p>Hold a chair, rise onto your toes, and lower slowly.</p></div></div><div style="margin-top:12px"><button class="btn full" onclick="completeWorkout()">Mark today's strength session complete</button><p id="workoutFeedback" class="muted small"></p></div></div>
+  <div class="notice"><strong>Back-pain safety:</strong> stop if an exercise causes sharp pain, radiating pain, or clear worsening. Seek urgent care for new loss of bladder/bowel control, numbness around the groin/saddle area, or new/worsening leg weakness. Consider a healthcare professional or physical therapist if pain persists or limits daily life.</div>
+</section>
+
+<section class="view" id="view-progress">
+  <div class="section-head"><div><p class="eyebrow">Notice the trend</p><h2>Your progress</h2></div></div>
+  <div class="card">
+    <div class="row between"><div><p class="eyebrow">Your week at a glance</p><h3 style="margin-bottom:2px">Small steps add up</h3></div><span class="pill" id="weeklyRange">Last 7 days</span></div>
+    <p class="muted small">A snapshot of your recent check-ins, movement, weight entries, and back notes. This is about patterns, not perfect scores.</p>
+    <div class="grid2">
+      <div class="stat"><div class="label">Habit check-ins</div><div class="value" id="weeklyHabits">0%</div><div class="small muted" id="weeklyHabitsDetail">0 of 35 possible</div></div>
+      <div class="stat"><div class="label">Strength sessions</div><div class="value" id="weeklyWorkouts">0</div><div class="small muted">in the last 7 days</div></div>
+      <div class="stat"><div class="label">Latest weight</div><div class="value" id="weeklyWeight">—</div><div class="small muted" id="weeklyWeightDetail">Log a weigh-in below</div></div>
+      <div class="stat"><div class="label">Latest back check-in</div><div class="value" id="weeklyPain">—</div><div class="small muted" id="weeklyPainDetail">Optional symptom log</div></div>
+    </div>
+    <div style="margin-top:18px"><div class="row between"><h3 style="font-size:15px">Daily habit check-ins</h3><span class="muted small">Past 7 days</span></div><div id="weeklyBars" class="row" style="align-items:end;gap:8px;height:112px;margin-top:10px"></div></div>
+    <div id="weeklyInsight" class="success" style="margin-top:14px">Your first check-ins will appear here.</div>
+    <button class="btn secondary full" style="margin-top:12px" onclick="refreshWeeklyDashboard()">Refresh weekly dashboard</button>
+  </div>
+  <div class="grid2"><div class="stat"><div class="label">Starting weight</div><div class="value">256 lb</div><div class="small muted">Your starting point</div></div><div class="stat"><div class="label">First milestone</div><div class="value">243 lb</div><div class="small muted">About 5% down</div></div></div>
+  <div class="card"><h3>Log a weigh-in</h3><p class="muted small">Optional. Weekly is plenty. Normal fluctuations are expected.</p><div class="inlineform"><div><label class="fieldlabel" for="weightDate">Date</label><input type="date" id="weightDate"></div><div><label class="fieldlabel" for="weightValue">Weight (lb)</label><input type="number" id="weightValue" min="1" max="1000" step="0.1" placeholder="e.g. 254.8"></div><div class="wide"><button class="btn full" onclick="saveWeight()">Save weigh-in</button></div></div><div id="weightSummary" style="margin-top:12px"></div><div id="weightHistory"></div></div>
+  <div class="card"><h3>Back-pain check-in</h3><p class="muted small">Record how you feel so you can notice patterns. This is not a diagnosis.</p><div class="inlineform"><div><label class="fieldlabel" for="painLevel">Pain level (0–10)</label><select id="painLevel"><option value="0">0 · None</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10 · Worst</option></select></div><div><label class="fieldlabel" for="painArea">Location</label><select id="painArea"><option>Lower back</option><option>Mid-back</option><option>Upper back/neck</option><option>Multiple areas</option></select></div><div class="wide"><label class="fieldlabel" for="painNote">What affected it today?</label><textarea id="painNote" placeholder="e.g. long sitting, walking felt okay, lifting"></textarea></div><div class="wide"><button class="btn full" onclick="savePain()">Save back check-in</button></div></div><div id="painHistory" style="margin-top:12px"></div></div>
+  <div class="card"><h3>Your notes</h3><label class="fieldlabel" for="notes">Anything you want to remember?</label><textarea id="notes" placeholder="Energy, hunger, wins, questions for your clinician…"></textarea><button class="btn secondary full" style="margin-top:10px" onclick="saveNotes()">Save note on this device</button><p class="muted small" id="notesStatus"></p></div>
+  <div class="notice">Your entries are saved in this browser on this device. They are not sent to a coach or healthcare professional. If you clear browser data or change devices, export or copy any information you want to keep.</div>
+</section>
+
+<section class="view" id="view-settings">
+  <div class="section-head"><div><p class="eyebrow">Your preferences</p><h2>Settings & help</h2></div></div>
+  <div class="card"><h3>Your plan at a glance</h3><ul class="clean"><li><strong>Starting weight:</strong> 256 lb</li><li><strong>Height / age:</strong> 5′3″ / 30</li><li><strong>Calorie estimate:</strong> 1,700–1,800/day as a starting estimate, not a strict ceiling</li><li><strong>Food priorities:</strong> balanced family meals, adequate protein, fiber, and flexible portions</li><li><strong>Household considerations:</strong> peanut/tree-nut allergies, no green beans, avoid lemon-heavy meals and Caesar dressing</li><li><strong>Exercise:</strong> beginner home routine, gradual low-impact progression</li></ul></div>
+  <div class="card"><h3>Export your data</h3><p class="muted small">Download a copy of your check-ins, weigh-ins, and notes as a JSON file.</p><button class="btn full" onclick="exportData()">Export my data</button></div>
+  <div class="card"><h3>Reset app data</h3><p class="muted small">This clears saved checklists and logs from this browser. Export first if you want to keep them.</p><button class="btn ghost full" onclick="resetAll()">Reset all saved data</button></div>
+  <div class="notice">Steady is a self-tracking tool, not medical care. Calorie needs vary, and back pain needs individualized assessment when persistent, severe, or worsening.</div>
+</section>
+<footer>Steady · Small steps, repeated kindly.</footer>
+</main>
+<nav class="nav" aria-label="Main navigation">
+<button class="active" data-view="today"><span class="ico">☀</span>Today</button>
+<button data-view="meals"><span class="ico">▤</span>Meals</button>
+<button data-view="workouts"><span class="ico">↗</span>Move</button>
+<button data-view="progress"><span class="ico">⌁</span>Progress</button>
+<button data-view="settings"><span class="ico">⚙</span>Settings</button>
+</nav>
+<script>
+const KEY='steady-app-v1';
+const defaultData={date:'',habits:{},groceries:[],weights:[],pain:[],notes:'',workouts:[]};
+let data=loadData(), selectedWeek=0;
+function loadData(){try{return {...defaultData,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){return {...defaultData}}}
+function persist(){localStorage.setItem(KEY,JSON.stringify(data))}
+const habits=[['meals','Follow my meal structure most of the day','Flexible, balanced meals count.'],['protein','Include protein at main meals','Eggs, yogurt, chicken, turkey, fish, or beans.'],['water','Drink water regularly','Keep water nearby during the day.'],['movement','Do a planned walk or movement break','Even five easy minutes counts.'],['rest','Make space for rest and sleep','Progress needs recovery, too.']];
+const meals=[
+['Monday','2 eggs, whole-wheat toast, strawberries.','Chicken rice bowl: 4 oz chicken, ½ cup rice, broccoli, corn, salsa.','5 oz chicken, 200 g roasted potatoes, 1½ cups broccoli.','Greek yogurt; apple and cheese.'],
+['Tuesday','Greek yogurt, ⅓ cup dry oats, berries.','Turkey-cheese whole-wheat wrap, carrots, grapes.','Turkey meatballs, 1 cup cooked whole-wheat spaghetti, marinara, salad.','Cottage cheese and fruit; popcorn.'],
+['Wednesday','Oatmeal with milk, banana, cinnamon, and an egg.','Leftover turkey meatballs, pasta, marinara, vegetables.','Chicken burrito bowl with 4–5 oz chicken, ½ cup rice, ½ cup black beans, corn, lettuce, salsa, cheese.','Pear and cheese; hummus with pita.'],
+['Thursday','2 eggs, toast, fruit.','Leftover burrito bowl.','Slow-cooker salsa chicken, black beans, corn, ½ cup rice or 2 small tortillas, vegetables.','Greek yogurt; apple with sunflower-seed butter.'],
+['Friday','Overnight oats with ⅓ cup oats, ¾ cup Greek yogurt, berries, milk.','Salsa chicken wrap with lettuce and fruit.','5 oz baked salmon, 200 g sweet potato, 1½ cups broccoli.','Cottage cheese and pineapple; popcorn.'],
+['Saturday','French toast from 2 slices whole-wheat bread and 1 egg, berries, yogurt.','Turkey-cheese sandwich, cucumber, fruit.','Turkey burger on whole-wheat bun, potato wedges, salad.','Yogurt and fruit; cheese and whole-grain crackers.'],
+['Sunday','2 eggs, toast, fruit.','Chicken quesadilla with peppers and cheese, salsa.','Chicken fajitas with peppers and onions, 2 small tortillas, ½ cup black beans, salsa.','Greek yogurt and fruit; hummus and crackers.']
+];
+const groceries=[
+['Meat, fish, eggs & dairy',[['Chicken breasts or thighs','4 lb raw'],['Lean ground turkey','1 lb'],['Deli turkey','1 lb'],['Salmon','1 lb'],['Eggs','18-count'],['Plain Greek yogurt','48–64 oz'],['Cottage cheese','16 oz'],['Milk','½ gallon'],['Cheese','16 oz']]],
+['Fruit & vegetables',[['Broccoli, fresh or frozen','2 lb'],['Bell peppers','6'],['Yellow onions','3'],['Potatoes','2 lb'],['Sweet potatoes','1½ lb'],['Lettuce or salad greens','1 large container'],['Carrots','1 lb'],['Cucumbers','2'],['Tomatoes','3'],['Strawberries or mixed berries','2 lb'],['Bananas','6'],['Apples and pears','8 total'],['Grapes','1 lb'],['Pineapple','1 small or canned']]],
+['Grains & bread',[['Old-fashioned oats','18 oz'],['Whole-wheat bread','2 loaves'],['Whole-wheat tortillas','2 packs'],['Whole-wheat burger buns','1 pack'],['Rice','1 lb dry'],['Whole-wheat spaghetti','1 lb'],['Whole-grain crackers','1 box'],['Pita bread','1 pack']]],
+['Canned & pantry',[['Black beans','4 cans'],['Corn','2 cans or 1 frozen bag'],['Marinara sauce','2 jars'],['Salsa','2 jars'],['Sunflower-seed butter','1 jar'],['Hummus','1 tub'],['Popcorn','1 bag or kernels'],['Olive oil','1 bottle if needed'],['Mustard and vinaigrette','1 each'],['Taco seasoning and spices','As needed']]]
+];
+function localDate(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function fmtDate(s){if(!s)return '';let d=new Date(s+'T12:00:00');return d.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'})}
+function dayIndex(){let d=new Date().getDay();return (d+6)%7}
+function init(){
+ const today=localDate(); if(data.date!==today){data.date=today;persist()}
+ document.getElementById('todayDate').textContent=new Date().toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'});
+ document.getElementById('weightDate').value=today;
+ const hour=new Date().getHours();document.getElementById('greeting').textContent=hour<12?'A gentle start to your day.':hour<17?'One small step at a time.':'You showed up today.';
+ renderHabits();renderMeals();renderGroceries();renderWeek();renderWeights();renderPain();refreshWeeklyDashboard();
+ document.getElementById('notes').value=data.notes||'';
+ document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view)));
+ document.querySelectorAll('#weekTabs button').forEach(b=>b.addEventListener('click',()=>{selectedWeek=+b.dataset.week;renderWeek()}));
+}
+function showView(name){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+name));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===name));window.scrollTo({top:0,behavior:'smooth'})}
+function renderHabits(){const box=document.getElementById('habitList');box.innerHTML='';let day=data.habits[data.date]||[];habits.forEach(([id,title,desc])=>{let row=document.createElement('div');row.className='checkrow';row.innerHTML=`<input type="checkbox" id="h-${id}" ${day.includes(id)?'checked':''}><label for="h-${id}"><strong>${title}</strong><span>${desc}</span></label>`;row.querySelector('input').addEventListener('change',e=>{let arr=data.habits[data.date]||[];data.habits[data.date]=e.target.checked?[...new Set([...arr,id])]:arr.filter(x=>x!==id);persist();updateHabitStats();refreshWeeklyDashboard()});box.appendChild(row)});updateHabitStats()}
+function updateHabitStats(){let day=data.habits[data.date]||[],n=day.length;document.getElementById('doneCount').textContent=n;document.getElementById('habitProgress').style.width=(n/5*100)+'%';document.getElementById('habitMessage').textContent=n===5?'All five done':n===0?'Ready when you are':n+' completed';}
+function renderMeals(){let i=dayIndex(),m=meals[i];document.getElementById('todayMeals').innerHTML=[['Breakfast',m[1]],['Lunch',m[2]],['Dinner',m[3]],['Snacks',m[4]]].map(x=>`<div class="mealitem"><b>${x[0]}</b><p>${x[1]}</p></div>`).join('');document.getElementById('mealDays').innerHTML=meals.map((m,i)=>`<details class="mealday" ${i===dayIndex()?'open':''}><summary>${m[0]} <span class="muted small">Daily menu</span></summary><div class="mealbody">${[['Breakfast',m[1]],['Lunch',m[2]],['Dinner',m[3]],['Snack ideas',m[4]]].map(x=>`<div class="mealitem"><b>${x[0]}</b><p>${x[1]}</p></div>`).join('')}</div></details>`).join('')}
+function renderGroceries(){let list=document.getElementById('groceryList');list.innerHTML='';let count=0;groceries.forEach((group,gi)=>{let heading=document.createElement('h3');heading.textContent=group[0];heading.style.margin='16px 0 4px';list.appendChild(heading);group[1].forEach((it,ii)=>{let key=gi+'-'+ii,checked=data.groceries.includes(key);if(checked)count++;let row=document.createElement('div');row.className='checkrow';row.innerHTML=`<input type="checkbox" id="g-${key}" ${checked?'checked':''}><label for="g-${key}"><strong>${it[0]}</strong><span>${it[1]}</span></label>`;row.querySelector('input').addEventListener('change',e=>{data.groceries=e.target.checked?[...new Set([...data.groceries,key])]:data.groceries.filter(x=>x!==key);persist();renderGroceries()});list.appendChild(row)})});document.getElementById('groceryCount').textContent=count+' checked'}
+function resetGroceries(){data.groceries=[];persist();renderGroceries()}
+function copyGroceries(){let txt=groceries.map(g=>g[0]+'\n'+g[1].map(i=>(data.groceries.includes(groceries.indexOf(g)+'-'+g[1].indexOf(i))?'[x] ':'[ ] ')+i[0]+' — '+i[1]).join('\n')).join('\n\n');if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(()=>alert('Grocery list copied.')).catch(()=>downloadText('steady-grocery-list.txt',txt))}else downloadText('steady-grocery-list.txt',txt)}
+const weeks=[{title:'Week 1 · Start gently',walk:'5–10 minutes, 4–5 days',strength:'One short strength session',note:'Take movement breaks during the workday. A five-minute walk counts.'},{title:'Week 2 · Repeat',walk:'10 minutes, 5 days',strength:'Two short sessions if tolerated',note:'Keep the pace easy. Repeat Week 1 if your back is more uncomfortable.'},{title:'Week 3 · Build',walk:'12–15 minutes, 5 days',strength:'Two sessions of 10–12 minutes',note:'Add time only if symptoms remain stable.'},{title:'Week 4 · Establish consistency',walk:'15–20 minutes, 5 days',strength:'Two short sessions',note:'Increase either duration or repetitions, not both at once.'}];
+function renderWeek(){document.querySelectorAll('#weekTabs button').forEach(b=>b.classList.toggle('active',+b.dataset.week===selectedWeek));let w=weeks[selectedWeek];document.getElementById('weekDetails').innerHTML=`<h3>${w.title}</h3><div class="mealitem"><b>Walking</b><p>${w.walk}</p></div><div class="mealitem"><b>Strength</b><p>${w.strength}</p></div><p class="muted small">${w.note}</p>`;document.getElementById('moveGoal').textContent=selectedWeek===0?'5–10 min':selectedWeek===1?'10 min':selectedWeek===2?'12–15 min':'15–20 min';document.getElementById('todayWorkoutText').textContent=w.walk+' at a comfortable pace. '+w.note}
+function completeWorkout(){let today=localDate();if(!data.workouts.includes(today))data.workouts.push(today);persist();refreshWeeklyDashboard();document.getElementById('workoutFeedback').textContent='Session checked off for today. Keep listening to your body.';document.getElementById('workoutBadge').textContent='Checked off'}
+
+function lastSevenDates(){let dates=[];for(let i=6;i>=0;i--){let d=new Date();d.setDate(d.getDate()-i);dates.push(d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'))}return dates}
+function refreshWeeklyDashboard(){
+ const dates=lastSevenDates(), habitTotal=dates.reduce((n,d)=>n+(data.habits[d]||[]).length,0), possible=dates.length*habits.length;
+ const workouts=dates.filter(d=>data.workouts.includes(d)).length;
+ document.getElementById('weeklyHabits').textContent=Math.round(habitTotal/possible*100)+'%';
+ document.getElementById('weeklyHabitsDetail').textContent=habitTotal+' of '+possible+' possible check-ins';
+ document.getElementById('weeklyWorkouts').textContent=String(workouts);
+ const recentWeight=data.weights.slice().sort((a,b)=>b.date.localeCompare(a.date))[0];
+ document.getElementById('weeklyWeight').textContent=recentWeight?recentWeight.value.toFixed(1):'—';
+ document.getElementById('weeklyWeightDetail').textContent=recentWeight?fmtDate(recentWeight.date):'Log a weigh-in below';
+ const recentPain=data.pain.slice().sort((a,b)=>b.date.localeCompare(a.date))[0];
+ document.getElementById('weeklyPain').textContent=recentPain?recentPain.level+'/10':'—';
+ document.getElementById('weeklyPainDetail').textContent=recentPain?fmtDate(recentPain.date)+(recentPain.area?' · '+recentPain.area:''):'Optional symptom log';
+ const bars=document.getElementById('weeklyBars');
+ bars.innerHTML=dates.map(d=>{const n=(data.habits[d]||[]).length, pct=n/habits.length*100, label=new Date(d+'T12:00:00').toLocaleDateString(undefined,{weekday:'short'});return `<div style="flex:1;min-width:0;text-align:center"><div title="${n} of 5 habits" style="height:78px;display:flex;align-items:end;justify-content:center"><div style="width:100%;max-width:30px;height:${Math.max(5,pct)}%;border-radius:7px 7px 3px 3px;background:${n===5?'#426451':'#a9c6b1'}"></div></div><div class="muted" style="font-size:10px;margin-top:6px">${label}</div><div style="font-size:10px;font-weight:700">${n}/5</div></div>`}).join('');
+ let insight='Every check-in gives you useful information. Start with the next small step.';
+ if(habitTotal===0)insight='No habit check-ins logged this week yet. Check off even one habit today to get started.';
+ else if(habitTotal>=25)insight='You have checked off most of your possible habits this week. Keep the routine gentle and repeatable.';
+ else if(workouts>=2)insight='You have logged '+workouts+' strength sessions this week. Recovery and comfortable movement count, too.';
+ else if(recentPain&&recentPain.level>=6)insight='Your latest back-pain rating is '+recentPain.level+'/10. Consider scaling back movements that aggravate it and contacting a healthcare professional if pain is severe, persistent, or worsening.';
+ else insight='You have '+habitTotal+' habit check-ins and '+workouts+' strength session'+(workouts===1?'':'s')+' logged this week. Build from what feels manageable.';
+ document.getElementById('weeklyInsight').textContent=insight;
+}
+
+function saveWeight(){let date=document.getElementById('weightDate').value||localDate(),value=Number(document.getElementById('weightValue').value);if(!value||value<1){alert('Enter a valid weight first.');return}data.weights=data.weights.filter(x=>x.date!==date);data.weights.push({date,value});data.weights.sort((a,b)=>a.date.localeCompare(b.date));persist();document.getElementById('weightValue').value='';renderWeights();refreshWeeklyDashboard()}
+function renderWeights(){let h=document.getElementById('weightHistory'),s=document.getElementById('weightSummary');if(!data.weights.length){s.innerHTML='<p class="muted small">No weigh-ins logged yet. Add one whenever you want; weekly is plenty.</p>';h.innerHTML='';return}let first=data.weights[0].value,last=data.weights[data.weights.length-1].value,diff=last-first;s.innerHTML=`<div class="success">Latest: <strong>${last.toFixed(1)} lb</strong> · ${diff===0?'No change from first entry':(diff<0?Math.abs(diff).toFixed(1)+' lb down':diff.toFixed(1)+' lb up')+' from first logged entry'}</div>`;h.innerHTML='<h3 style="margin-top:16px">Recent entries</h3>'+data.weights.slice().reverse().slice(0,12).map(x=>`<div class="historyitem"><span>${fmtDate(x.date)}</span><strong>${x.value.toFixed(1)} lb</strong></div>`).join('')}
+function savePain(){let entry={date:localDate(),level:+document.getElementById('painLevel').value,area:document.getElementById('painArea').value,note:document.getElementById('painNote').value.trim()};data.pain.unshift(entry);data.pain=data.pain.slice(0,60);persist();document.getElementById('painNote').value='';renderPain();refreshWeeklyDashboard()}
+function renderPain(){let box=document.getElementById('painHistory');box.innerHTML=data.pain.length?'<h3>Recent check-ins</h3>'+data.pain.slice(0,7).map(p=>`<div class="historyitem"><div><strong>${fmtDate(p.date)} · ${p.level}/10</strong><div class="muted small">${escapeHtml(p.area)}${p.note?' · '+escapeHtml(p.note):''}</div></div></div>`).join(''):'<p class="muted small">No back check-ins yet.</p>'}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function saveNotes(){data.notes=document.getElementById('notes').value;persist();document.getElementById('notesStatus').textContent='Saved on this device.'}
+function exportData(){downloadText('steady-backup-'+localDate()+'.json',JSON.stringify(data,null,2),'application/json')}
+function downloadText(name,text,type='text/plain'){let blob=new Blob([text],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function resetAll(){if(confirm('Clear all saved Steady data on this device? Export first if you want a backup.')){localStorage.removeItem(KEY);data={...defaultData};init();alert('Saved app data has been reset.')}}
+init();
+if('serviceWorker' in navigator && location.protocol.startsWith('http')){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}))}
+</script>
+</body>
+</html>
